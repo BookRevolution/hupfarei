@@ -1,0 +1,12 @@
+node_modules
+.next
+out
+*.zip
+Applications
+Bilder
+_icon_tmp
+netlify-deploy
+netlify-upload
+die-hupfarei-netlify-folder
+seo-optimized-extracted
+.git-backup-*
