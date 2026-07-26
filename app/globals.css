@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import '../styles/tokens.css';
+
+/* Laufschrift Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+  display: flex;
+}
+
+html { 
+  scroll-behavior: smooth; 
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+}
+
+/* Schräge Hintergrund-Elemente für organischeren Look */
+.diagonal-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-section);
+  transform: skewY(-2deg);
+  transform-origin: top left;
+  z-index: -1;
+}
+
+.diagonal-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Verspielte Wellenformen */
+.wave-top {
+  position: relative;
+}
+
+.wave-top::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: var(--gradient-1);
+  clip-path: ellipse(100% 100% at 50% 0%);
+  z-index: -1;
+}
+
+/* Subtile kindliche Hintergrund-Animationen */
+.floating-shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.15;
+}
+
+.floating-shapes::before,
+.floating-shapes::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  animation: gentleFloat 20s ease-in-out infinite;
+}
+
+.floating-shapes::before {
+  width: 60px;
+  height: 60px;
+  background: var(--gradient-1);
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.floating-shapes::after {
+  width: 40px;
+  height: 40px;
+  background: var(--gradient-3);
+  top: 60%;
+  right: 15%;
+  animation-delay: 8s;
+}
+
+/* Sanfte schwebende Bewegung */
+@keyframes gentleFloat {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  25% { 
+    transform: translateY(-10px) translateX(5px) rotate(90deg);
+  }
+  50% { 
+    transform: translateY(-5px) translateX(-3px) rotate(180deg);
+  }
+  75% { 
+    transform: translateY(-12px) translateX(8px) rotate(270deg);
+  }
+}
+
+/* Subtile Partikel-Animationen */
+.subtle-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--brand-yellow);
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: particleFloat 15s linear infinite;
+}
+
+.particle:nth-child(1) { left: 20%; animation-delay: 0s; }
+.particle:nth-child(2) { left: 50%; animation-delay: 5s; background: var(--brand-pink); }
+.particle:nth-child(3) { left: 80%; animation-delay: 10s; background: var(--brand-mint); }
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(100vh) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-100px) scale(0);
+    opacity: 0;
+  }
+}
+
+.prose :where(h2,h3){ 
+  scroll-margin-top: 6rem; 
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-5 py-3 rounded-2xl shadow-brand bg-brand-purple text-white hover:bg-opacity-90 transition-all;
+  }
+  
+  .btn-secondary {
+    @apply px-5 py-3 rounded-2xl border border-ink hover:bg-ink hover:text-bg transition-all;
+  }
+  
+  .card {
+    @apply rounded-2xl border p-6 shadow-brand bg-white;
+  }
+  
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple focus-visible:ring-offset-2;
+  }
+}
+

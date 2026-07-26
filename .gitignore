@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Next.js Build
+.next/
+out/
+build/
+dist/
+
+# Deployment-Artefakte / Altlasten
+netlify-deploy/
+netlify-upload/
+die-hupfarei-netlify-folder/
+seo-optimized-extracted/
+_icon_tmp/
+Applications/
+*.zip
+.vercel
+.netlify
+
+# Backups
+.git-backup-*/
+*.bak-*
+
+# Umgebung
+.env
+.env.local
+.env.*.local
+
+# System
+.DS_Store
+*.pem
+npm-debug.log*
+yarn-error.log*

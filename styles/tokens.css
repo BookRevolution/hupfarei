@@ -1,0 +1,39 @@
+:root {
+  /* Kinderfreundliche, warme Farben */
+  --brand-pink: #FF6B9D;
+  --brand-yellow: #FFD93D;
+  --brand-purple: #A855F7;
+  --brand-mint: #34D399;
+  --brand-orange: #FB923C;
+  --brand-blue: #60A5FA;
+  --brand-green: #4ADE80;
+  --brand-red: #F87171;
+  
+  /* Helle, einladende Hintergründe */
+  --ink: #374151;
+  --bg: #FFFFFF;
+  --bg-light: #F9FAFB;
+  --bg-card: #FFFFFF;
+  
+  /* Organische, weiche Formen */
+  --radius: 1.5rem;
+  --radius-xl: 2rem;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
+  --shadow-color: 0 10px 40px rgba(168, 85, 247, 0.15);
+  
+  /* Schräge, verspielte Gradients wie HanisauLand */
+  --gradient-1: linear-gradient(135deg, #FF6B9D 0%, #FFD93D 100%);
+  --gradient-2: linear-gradient(135deg, #60A5FA 0%, #A855F7 100%);
+  --gradient-3: linear-gradient(135deg, #34D399 0%, #60A5FA 100%);
+  --gradient-4: linear-gradient(135deg, #FFD93D 0%, #FB923C 100%);
+  --gradient-hero: linear-gradient(135deg, #FF6B9D 0%, #A855F7 50%, #60A5FA 100%);
+  --gradient-section: linear-gradient(135deg, #F9FAFB 0%, #EEF2FF 100%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root { 
+    --bg: #16161a; 
+    --ink: #f6f6f6; 
+  }
+}

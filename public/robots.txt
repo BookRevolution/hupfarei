@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://diehupfarei.at/sitemap.xml
+
+# Spezielle Crawling-Regeln für Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Andere Suchmaschinen
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Blockiere irrelevante Bereiche
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+
