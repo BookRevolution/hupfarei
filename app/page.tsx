@@ -55,7 +55,7 @@ export default function Page() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
                 { icon: '💰', label: 'Preise', value: preisLabel(AB_PREISE.basis), sub: 'pro Miettag' },
-                { icon: '🚚', label: 'Anhänger', value: 'Inklusive', sub: 'zur Selbstabholung' },
+                { icon: '🚚', label: 'Anhänger', value: 'Inklusive', sub: '' },
                 { icon: '⚡', label: 'Aufbau', value: 'ca. 10 Min.', sub: 'ohne Vorkenntnisse' },
                 { icon: '🛡️', label: 'Sicherheit', value: 'EN 14960', sub: 'geprüft & gereinigt' },
               ].map((f) => (
@@ -63,7 +63,7 @@ export default function Page() {
                   <div className="text-2xl mb-1">{f.icon}</div>
                   <div className="text-xs uppercase tracking-wide text-gray-400 font-semibold">{f.label}</div>
                   <div className="text-lg font-bold text-gray-800 leading-tight">{f.value}</div>
-                  <div className="text-xs text-gray-500 mt-1">{f.sub}</div>
+                  {f.sub && <div className="text-xs text-gray-500 mt-1">{f.sub}</div>}
                 </div>
               ))}
             </div>
