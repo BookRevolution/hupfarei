@@ -35,22 +35,46 @@ export default function Page() {
     <>
       <Marquee />
 
-      {/* Direktantwort für Suchmaschinen und KI-Systeme */}
-      <section className="bg-white/70 border-b border-brand-purple/10">
-        <div className="container py-6">
-          <p className="max-w-4xl mx-auto text-center text-gray-700 leading-relaxed">
-            <strong>Die Hupfarei</strong> vermietet in ganz Oberösterreich eine Hüpfburg mit Rutsche und integriertem
-            Bällebad (1.200 Bälle) – dazu Popcorn- und Zuckerwattemaschine sowie einen Clown mit
-            Riesenseifenblasen-Workshop. Abgeholt wird in <strong>Oftering</strong> oder <strong>Linz/Ebelsberg</strong>,
-            der <strong>Anhänger ist im Mietpreis inklusive</strong>. Preise ab {preisLabel(AB_PREISE.basis)} pro Miettag,
-            Aufbau in rund 10 Minuten, geprüft nach EN 14960.
-          </p>
-        </div>
-      </section>
-
       <Navbar />
       
       <Hero />
+
+      {/* Auf einen Blick – Direktantwort für Suchmaschinen und KI-Systeme */}
+      <section className="py-12 bg-white">
+        <div className="container">
+          <div className="max-w-5xl mx-auto bg-gradient-to-br from-brand-purple/5 via-white to-brand-pink/5 rounded-3xl p-8 md:p-10 shadow-lg border border-brand-purple/10">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4 text-center">
+              Die Hupfarei auf einen Blick
+            </h2>
+            <p className="text-lg text-gray-700 leading-relaxed text-center max-w-3xl mx-auto mb-8">
+              Wir vermieten in ganz Oberösterreich eine <span className="font-semibold text-purple-700">Hüpfburg mit Rutsche
+              und integriertem Bällebad</span> – dazu Popcorn- und Zuckerwattemaschine sowie einen Clown mit
+              Riesenseifenblasen-Workshop. Du holst alles bei uns in <span className="font-semibold">Oftering</span> oder{' '}
+              <span className="font-semibold">Linz/Ebelsberg</span> ab, der Anhänger ist im Mietpreis inklusive.
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { icon: '💰', label: 'Preise', value: preisLabel(AB_PREISE.basis), sub: 'pro Miettag' },
+                { icon: '🚚', label: 'Anhänger', value: 'Inklusive', sub: 'keine Liefergebühr' },
+                { icon: '⚡', label: 'Aufbau', value: 'ca. 10 Min.', sub: 'ohne Vorkenntnisse' },
+                { icon: '🛡️', label: 'Sicherheit', value: 'EN 14960', sub: 'geprüft & gereinigt' },
+              ].map((f) => (
+                <div key={f.label} className="bg-white rounded-2xl p-4 text-center shadow-sm border border-gray-100">
+                  <div className="text-2xl mb-1">{f.icon}</div>
+                  <div className="text-xs uppercase tracking-wide text-gray-400 font-semibold">{f.label}</div>
+                  <div className="text-lg font-bold text-gray-800 leading-tight">{f.value}</div>
+                  <div className="text-xs text-gray-500 mt-1">{f.sub}</div>
+                </div>
+              ))}
+            </div>
+            <div className="text-center mt-7">
+              <a href="/huepfburg-preise/" className="inline-block bg-brand-purple text-white font-bold px-7 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all">
+                💰 Alle Preise &amp; Pakete ansehen
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
       
       <Section id="ueber-uns" title="Was macht uns besonders?" className="diagonal-bg pt-20 relative">
         {/* Subtile Hintergrund-Animation */}
