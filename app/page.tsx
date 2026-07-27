@@ -5,6 +5,7 @@ import Section from '@/components/section'
 import { PriceCard } from '@/components/price-card'
 import ContactForm from '@/components/contact-form'
 import Marquee from '@/components/marquee'
+import { AB_PREISE, preisLabel } from '@/lib/pricing'
 
 const CITY_CARDS = [
   { slug: 'huepfburg-mieten-linz', name: 'Linz', subtitle: '& Umgebung', icon: '🏙️', desc: 'Hüpfburg mieten in Linz, Urfahr, Ebelsberg, Leonding und ganz Linz-Umgebung', gradient: 'from-brand-purple/10 to-brand-pink/10', iconBg: 'bg-brand-purple', linkColor: 'text-purple-700', rotate: 'hover:-rotate-1' },
@@ -19,6 +20,9 @@ const TOPIC_CARDS = [
   { slug: 'baellebad-mieten-oberoesterreich', name: 'Bällebad mieten', icon: '🎨', desc: '1.200 bunte Bälle für maximalen Spaß!', gradient: 'from-brand-yellow/10 to-brand-orange/10' },
   { slug: 'kinderfest-mieten-oberoesterreich', name: 'Kinderfest', icon: '🎪', desc: 'Komplettausstattung für Ihr Kinderfest', gradient: 'from-brand-orange/10 to-brand-pink/10' },
   { slug: 'geburtstag-huepfburg-oberoesterreich', name: 'Kindergeburtstag', icon: '🎂', desc: 'Unvergessliche Geburtstagsfeiern!', gradient: 'from-brand-pink/10 to-brand-purple/10' },
+  { slug: 'huepfburg-pfarrfest-zeltfest-oberoesterreich', name: 'Pfarrfest & Zeltfest', icon: '⛪', desc: 'Das Kinderprogramm für Vereinsfeste', gradient: 'from-brand-mint/10 to-brand-yellow/10' },
+  { slug: 'firmenfest-kinderprogramm-oberoesterreich', name: 'Firmenfest & Familientag', icon: '🏢', desc: 'Kinderprogramm auf Rechnung', gradient: 'from-blue-50 to-brand-mint/10' },
+  { slug: 'huepfburg-indoor-winter-oberoesterreich', name: 'Indoor & Winter', icon: '❄️', desc: 'Turnsaal, Pfarrsaal oder Halle – ganzjährig', gradient: 'from-sky-50 to-brand-purple/10' },
 ]
 
 const PREMIUM_CARDS = [
@@ -30,6 +34,20 @@ export default function Page() {
   return (
     <>
       <Marquee />
+
+      {/* Direktantwort für Suchmaschinen und KI-Systeme */}
+      <section className="bg-white/70 border-b border-brand-purple/10">
+        <div className="container py-6">
+          <p className="max-w-4xl mx-auto text-center text-gray-700 leading-relaxed">
+            <strong>Die Hupfarei</strong> vermietet in ganz Oberösterreich eine Hüpfburg mit Rutsche und integriertem
+            Bällebad (1.200 Bälle) – dazu Popcorn- und Zuckerwattemaschine sowie einen Clown mit
+            Riesenseifenblasen-Workshop. Abgeholt wird in <strong>Oftering</strong> oder <strong>Linz/Ebelsberg</strong>,
+            der <strong>Anhänger ist im Mietpreis inklusive</strong>. Preise ab {preisLabel(AB_PREISE.basis)} pro Miettag,
+            Aufbau in rund 10 Minuten, geprüft nach EN 14960.
+          </p>
+        </div>
+      </section>
+
       <Navbar />
       
       <Hero />
@@ -83,7 +101,7 @@ export default function Page() {
                 </div>
                 <div>
                   <h4 className="text-xl font-bold text-gray-800 mb-2">Top Qualität</h4>
-                  <p className="text-gray-600">Sauber, sicher und regelmäßig geprüft</p>
+                  <p className="text-gray-600">Nach <span className="font-semibold">EN 14960</span> geprüft, vor jeder Vermietung gereinigt und kontrolliert</p>
                 </div>
               </div>
             </div>
@@ -171,7 +189,7 @@ export default function Page() {
             <div className="transform hover:scale-105 transition-all duration-300 hover:-rotate-1">
               <PriceCard 
                 title="🎈 Hüpfburg Basis" 
-                price="Auf Anfrage" 
+                price={preisLabel(AB_PREISE.basis)} 
                 features={[
                   'Hüpfburg mit Rutsche',
                   'Integriertes Bällebad',
@@ -191,7 +209,7 @@ export default function Page() {
               </div>
               <PriceCard 
                 title="🎪 Hüpfburg + Extras" 
-                price="Auf Anfrage" 
+                price={preisLabel(AB_PREISE.extras)} 
                 features={[
                   'Hüpfburg mit Rutsche',
                   'Integriertes Bällebad',
@@ -206,7 +224,7 @@ export default function Page() {
             <div className="transform hover:scale-105 transition-all duration-300 hover:-rotate-1">
               <PriceCard
                 title="🎭 Clown & Riesenseifenblasen"
-                price="Auf Anfrage"
+                price={preisLabel(AB_PREISE.clown)}
                 features={[
                   'Professioneller Clown',
                   'Riesenseifenblasen-Workshop',
@@ -228,8 +246,9 @@ export default function Page() {
                 <div>
                   <h4 className="text-2xl font-bold text-gray-800 mb-3">Faire Preise für jeden!</h4>
                   <p className="text-lg text-gray-600 leading-relaxed mb-2">
-                    <span className="font-bold text-brand-pink">Alle Preise auf Anfrage</span> – wir erstellen dir gerne ein 
-                    individuelles Angebot für dein perfektes Kinderfest!
+                    <span className="font-bold text-brand-pink">Startpreise pro Miettag</span> – der genaue Preis hängt von Mietdauer,
+                    Termin und Extras ab. Du bekommst meist innerhalb weniger Stunden ein fixes Angebot.
+                    {' '}<a href="/huepfburg-preise/" className="underline font-semibold text-brand-purple hover:text-brand-pink">Alle Preise ansehen →</a>
                   </p>
                   <p className="text-lg text-gray-600 leading-relaxed">
                     <span className="font-bold text-brand-mint">Anhänger inklusive</span> – du brauchst nur ein Auto mit Anhängerkupplung! 🚗

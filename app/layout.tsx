@@ -2,6 +2,8 @@ import './globals.css'
 import type { Metadata } from 'next'
 import Analytics from './analytics'
 import WhatsAppFloat from '@/components/whatsapp-float'
+import { HOME_FAQ } from '@/lib/faq'
+import { AB_PREISE } from '@/lib/pricing'
 
 export const metadata: Metadata = {
   title: 'Die Hupfarei - Hüpfburg mieten in Oberösterreich | Linz & Umgebung',
@@ -88,6 +90,20 @@ export default function RootLayout({
               "url": "https://www.diehupfarei.at",
               "telephone": "+43-660-9395049",
               "email": "office@diehupfarei.at",
+              "priceRange": "€€",
+              "currenciesAccepted": "EUR",
+              "image": "https://www.diehupfarei.at/huepfburg.webp",
+              "logo": "https://www.diehupfarei.at/Logo_Gro%C3%9F.webp",
+              "knowsAbout": ["Hüpfburg mieten","Bällebad mieten","Kindergeburtstag","Pfarrfest","Zeltfest","Firmenfest","Kinderanimation","Zuckerwattemaschine mieten","Popcornmaschine mieten"],
+              "areaServed": [
+                { "@type": "City", "name": "Linz" },
+                { "@type": "City", "name": "Wels" },
+                { "@type": "City", "name": "Steyr" },
+                { "@type": "City", "name": "Gmunden" },
+                { "@type": "City", "name": "Vöcklabruck" },
+                { "@type": "City", "name": "Braunau am Inn" },
+                { "@type": "AdministrativeArea", "name": "Oberösterreich" }
+              ],
               "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "Aichgraben 8",
@@ -133,51 +149,85 @@ export default function RootLayout({
                     }
                   }
                 ]
-              },
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "5.0",
-                "reviewCount": "25",
-                "bestRating": "5",
-                "worstRating": "1"
               }
             })
           }}
         />
         
-        {/* FAQ Strukturierte Daten */}
+        {/* FAQ Strukturierte Daten (zentral aus lib/faq.ts) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "FAQPage",
-              "mainEntity": [
+              "@id": "https://www.diehupfarei.at/#faq",
+              "mainEntity": HOME_FAQ.map((f) => ({
+                "@type": "Question",
+                "name": f.question,
+                "acceptedAnswer": { "@type": "Answer", "text": f.answer },
+              })),
+            })
+          }}
+        />
+
+        {/* Angebote mit Preisen */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Service",
+              "@id": "https://www.diehupfarei.at/#service",
+              "name": "Hüpfburg mit Bällebad mieten in Oberösterreich",
+              "serviceType": "Hüpfburgverleih",
+              "provider": { "@id": "https://www.diehupfarei.at/#organization" },
+              "areaServed": { "@type": "AdministrativeArea", "name": "Oberösterreich" },
+              "offers": [
                 {
-                  "@type": "Question",
-                  "name": "Wie funktioniert die Abholung der Hüpfburg?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Du holst die Hüpfburg auf dem Anhänger direkt bei uns in Oftering oder Linz/Ebelsberg ab. Der Anhänger ist im Mietpreis enthalten - du brauchst nur ein Auto mit Anhängerkupplung."
-                  }
+                  "@type": "Offer",
+                  "name": "Hüpfburg Basis",
+                  "description": "Hüpfburg mit Rutsche, Anhänger im Mietpreis inklusive",
+                  "price": String(AB_PREISE.basis),
+                  "priceCurrency": "EUR",
+                  "availability": "https://schema.org/InStock",
+                  "url": "https://www.diehupfarei.at/huepfburg-preise/",
                 },
                 {
-                  "@type": "Question", 
-                  "name": "Ist das Bällebad inklusive?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Unser integriertes Bällebad mit 1.200 bunten Bällen ist bei jeder Hüpfburg dabei! Saubere, geprüfte Bälle für maximalen Spaß – ohne Aufpreis!"
-                  }
+                  "@type": "Offer",
+                  "name": "Hüpfburg + Extras",
+                  "description": "Hüpfburg mit Rutsche, Bällebad mit 1.200 Bällen, Popcorn- und Zuckerwattemaschine",
+                  "price": String(AB_PREISE.extras),
+                  "priceCurrency": "EUR",
+                  "availability": "https://schema.org/InStock",
+                  "url": "https://www.diehupfarei.at/huepfburg-preise/",
                 },
                 {
-                  "@type": "Question",
-                  "name": "In welchen Gebieten vermietet ihr?",
-                  "acceptedAnswer": {
-                    "@type": "Answer", 
-                    "text": "Wir vermieten in ganz Oberösterreich - schnell und unkompliziert für dein Kinderfest! Schwerpunkt liegt auf Linz und Umgebung."
-                  }
+                  "@type": "Offer",
+                  "name": "Clown & Riesenseifenblasen",
+                  "description": "Professioneller Clown mit interaktivem Riesenseifenblasen-Workshop",
+                  "price": String(AB_PREISE.clown),
+                  "priceCurrency": "EUR",
+                  "availability": "https://schema.org/InStock",
+                  "url": "https://www.diehupfarei.at/huepfburg-preise/",
                 }
-              ]
+              ],
+            })
+          }}
+        />
+
+        {/* Website-Entität */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "@id": "https://www.diehupfarei.at/#website",
+              "url": "https://www.diehupfarei.at",
+              "name": "Die Hupfarei",
+              "inLanguage": "de-AT",
+              "publisher": { "@id": "https://www.diehupfarei.at/#organization" },
             })
           }}
         />
